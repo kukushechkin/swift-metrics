@@ -30,7 +30,8 @@ let package = Package(
 
 for target in package.targets {
     var settings = target.swiftSettings ?? []
-    settings.append(.enableExperimentalFeature("StrictConcurrency=complete"))
+    settings.append(.swiftLanguageMode(.v6))
+    settings.append(.unsafeFlags(["-require-explicit-sendable"]))
     target.swiftSettings = settings
 }
 

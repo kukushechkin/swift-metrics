@@ -172,6 +172,7 @@ internal func debugOnly(_ body: () -> Void) {
     )
 }
 
+// `UnsafeMutablePointer` is not `Sendable`; thread-safety is provided by the underlying pthread mutex.
 extension Lock: @unchecked Sendable {}
 
 /// A reader/writer threading lock based on `libpthread` instead of `libdispatch`.
@@ -180,6 +181,7 @@ extension Lock: @unchecked Sendable {}
 /// of lock is safe to use with `libpthread`-based threading models, such as the
 /// one used by NIO. On Windows, the lock is based on the substantially similar
 /// `SRWLOCK` type.
+// `UnsafeMutablePointer` is not `Sendable`; thread-safety is provided by the underlying pthread rwlock.
 internal final class ReadWriteLock: @unchecked Sendable {
     #if canImport(WASILibc)
     // WASILibc is single threaded, provides no locks

@@ -282,6 +282,7 @@ extension FloatingPointCounter: CustomStringConvertible {
 /// ```swift
 /// guage.record(100)
 /// ```
+// Restates the `@unchecked Sendable` conformance inherited from `Recorder`.
 public final class Gauge: Recorder, @unchecked Sendable {
     /// Create a new gauge.
     ///
